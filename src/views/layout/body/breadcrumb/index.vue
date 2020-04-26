@@ -24,9 +24,8 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class BodyBreadcrumb extends Vue {
-    private separator: string = "<b style='color: #2d8cf0;padding: 0 5px;'>=></b>";
+    private separator: string = '<b style=\'color: #2d8cf0;padding: 0 5px;\'>=></b>';
 }
-
 </script>
 
 <style lang="scss" scoped>

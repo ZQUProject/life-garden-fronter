@@ -23,17 +23,16 @@ import LayoutBody from '@/views/layout/body/index.vue';
 import LayoutFooter from '@/views/layout/footer/index.vue';
 @Component({
   components: {
-    LayoutHeader : LayoutHeader,
-    LayoutBody : LayoutBody,
-    LayoutFooter : LayoutFooter,
+    LayoutHeader,
+    LayoutBody,
+    LayoutFooter,
   },
 })
 export default class Home extends Vue {
-    create(){
-        console.log(this)
+    public create() {
+        console.log(this);
     }
 }
-
 </script>
 
 <style lang="scss" scoped>

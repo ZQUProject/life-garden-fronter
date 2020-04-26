@@ -74,13 +74,12 @@ import BodyBreadcrumb from './breadcrumb/index.vue';
 import BodySideBar from './sidebar/index.vue';
 @Component({
   components: {
-      BodyBreadcrumb: BodyBreadcrumb,
-      BodySideBar: BodySideBar,
+      BodyBreadcrumb,
+      BodySideBar,
   },
 })
 export default class LayoutBody extends Vue {
 }
-
 </script>
 
 <style lang="scss" scoped>

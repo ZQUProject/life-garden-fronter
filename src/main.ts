@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
+import './assets/icons';//引入svg
 
 Vue.config.productionTip = false;
 

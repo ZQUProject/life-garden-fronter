@@ -43,11 +43,10 @@ export default class LayoutHeader extends Vue {
     private theme1: string  = 'light';
     private logo: string = require('@/assets/images/logo.png');
     private HOME_PAGE: string = '/';
-    private goHomePage(){
-        this.$router.push({ path: this.HOME_PAGE }).catch( data => { });
+    private goHomePage() {
+        this.$router.push({ path: this.HOME_PAGE }).catch( (data) => { });
     }
 }
-
 </script>
 
 <style lang="scss" scoped>
