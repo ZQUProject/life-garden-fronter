@@ -4,6 +4,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  lintOnSave: false,   // 关闭代码验证
   chainWebpack(config) {
     config.module
         .rule('svg')
@@ -20,5 +21,5 @@ module.exports = {
           symbolId: 'icon-[name]'
         })
         .end()
-  }
+  },
 }

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import Login from '../views/Login.vue';
+import Login from '../views/login/index.vue';
 
 Vue.use(VueRouter);
 
@@ -18,7 +18,7 @@ const routes = [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/login/index.vue')
   },
   {
     path: '/home',
