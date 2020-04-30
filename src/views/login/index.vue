@@ -139,7 +139,7 @@ export default class Login extends Vue {
             user = decrypt(user).split('&')
             this.loginForm = {
               account: user[0],
-              password: user[1],
+              password: user[1]
             }
 		}
 	}
