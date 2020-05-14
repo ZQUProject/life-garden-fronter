@@ -1,16 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import Login from '../views/login/index.vue';
-
+import Main from '@/layout/index.vue';
+import Login from '@/views/login/index.vue';
+import ViewUI, { LoadingBar } from 'view-design';
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: Login,
-  },
   {
     path: '/login',
     name: 'login',
@@ -21,9 +16,36 @@ const routes = [
     component: () => import('../views/login/index.vue')
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    path: '/',
+    component: Main,
+    children: [
+        {
+          path: 'home',
+          component: () => import('@/views/home/index.vue'),
+          name: '首页',
+        }, 
+        {
+          path: 'resource/share',
+          component: () => import('@/views/resource/share/index.vue'),
+          name: '资源共享'
+        }, 
+        {
+          path: 'resource/apply',
+          component: () => import('@/views/resource/apply/index.vue'),
+          name: '资源申请'
+        }, 
+        {
+          path: 'good/found',
+          component: () => import('@/views/good/found/index.vue'),
+          name: '找物'
+        },
+        {
+          path: 'good/lost',
+          component: () => import('@/views/good/lost/index.vue'),
+          name: '失物'
+        },
+        
+      ]
   },
   {
     path: '/about',
@@ -38,7 +60,15 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  routes: routes,
 });
 
+router.beforeEach((to, from, next) => {
+  LoadingBar.start();
+  next();
+});
+
+router.afterEach(route => {
+  LoadingBar.finish();
+});
 export default router;

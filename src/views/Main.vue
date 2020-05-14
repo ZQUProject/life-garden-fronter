@@ -1,14 +1,12 @@
 <template>
 
      <div class="layout">
-        
             <Header class="layout-header">
                <LayoutHeader></LayoutHeader>
             </Header>
             <Layout class="layout-body"> 
                 <LayoutBody></LayoutBody>
             </Layout>
-            <!-- <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer> -->
        
         <Footer class="layout-footer">
             <LayoutFooter></LayoutFooter>

@@ -1,6 +1,6 @@
 import { session } from '@/utils/session';
 
-const TokenKey = 'life_garden_token'
+export const TokenKey = 'life_garden_token'
 export function getToken() {
     return session.get(TokenKey);
   }

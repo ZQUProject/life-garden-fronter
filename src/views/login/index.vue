@@ -6,9 +6,7 @@
     <!--:style="{height: screenHeight}"-->
     <div class="content">
       <div class="notice-panel">
-        <div class="content-notice">
-          <img :src="logoImg" />
-        </div>
+          <img :src="loginShowImage"  style="width:100%; height:100%"/>
       </div>
 
       <div class="login-panel">
@@ -20,27 +18,24 @@
           <Form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-input"  auto-complete="on">
             <FormItem prop="account">
               <Input v-model="loginForm.account" class="el-input input" placeholder="账号" size="large">
-                <span slot="prefix">
-                  <svg-icon icon-class="user" class="input-icon"></svg-icon>
-                </span>
+                <Icon custom="i-icon i-icon-login-user" slot="prepend" />
               </Input>
             </FormItem>
 
             <FormItem prop="password">
               <Input v-model="loginForm.password" type="password" class="el-input input" size="large" placeholder="密码">
-                <span slot="prefix">
-                  <svg-icon icon-class="password" class="input-icon"></svg-icon>
-                </span>
+               <Icon custom="i-icon i-icon-password" slot="prepend" />
               </Input>
             </FormItem>
             <FormItem prop="captcha">
               <div class="input-left input-code">
                 <Input v-model="loginForm.captcha" style="width: 60%; vertical-align: middle;"
                        size="large" class="el-input input" placeholder="验证码">
-                  <span slot="prefix">
-                  </span>
+                  <Icon custom="i-icon i-icon-yanzhengma" slot="prepend" />
                 </Input>
-                <img :src="captchaUrl" @click="getCaptchaImg">
+				<div style="margin-left: 15px;">
+                	<img :src="captchaUrl" @click="getCaptchaImg">
+				</div>
               </div>
             </FormItem>
             <FormItem class="login-form-content-label" label="记住我">
@@ -61,9 +56,27 @@
     </div>
     <div class="footer">
       <div class="wrapper">
-        <span>Copyright © 2019-2020 LWJ, YZY, YSK</span>
+        <span>Copyright © 2020-2020 LWJ, YZY, YSK</span>
       </div>
     </div>
+        <vue-particles
+            color="#dedede"
+            :particleOpacity="0.7"
+            :particlesNumber="80"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#dedede"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.4"
+            :linesDistance="150"
+            :moveSpeed="3"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+      >
+      </vue-particles>
   </div>
 </template>
 
@@ -73,6 +86,7 @@ import { isValidAccount } from '@/utils/validator';
 import { login, getCaptchaImage } from '@/api/user';
 import  { encrypt, decrypt } from '@/utils/crypt'
 import Cookies from 'js-cookie'
+import allLoginShowImage from '@/assets/images'
 
 const validateAccount = (rule: any, value: string, callback: any) => {
   if (!isValidAccount(value)) {
@@ -94,7 +108,10 @@ const validateCaptcha = (rule: any, value: string, callback: any) => {
 })
 export default class Login extends Vue {
 	private buttonSize = 100;
-	private logoImg = require("../../assets/images/logo.png");
+  private logoImg = require("../../assets/images/logo.png");
+  private allLoginShowImage = allLoginShowImage;
+  private  randIndex = Math.floor(Math.random() * this.allLoginShowImage.length)
+  private loginShowImage = this.allLoginShowImage[this.randIndex]
 	private captchaUrl =  '';
 	private loginForm: any = {
 		account: '',
@@ -102,7 +119,10 @@ export default class Login extends Vue {
 		captcha: '',
 		rememberMe: false,
 		uuid: ''
-	};
+  };
+  computed() {
+     
+  }
 	private loading: boolean = false;
 		private loginRules: any = {
 			account: [
@@ -118,7 +138,6 @@ export default class Login extends Vue {
 				{ trigger: 'blur', validator: validateCaptcha }
 			]
 	};
-  
 
 	created () {
 		// 获取记住我时的Cookie值'
@@ -128,8 +147,8 @@ export default class Login extends Vue {
 	}
 	private getCaptchaImg() {
 		getCaptchaImage().then(res => {
-            // this.loginForm.uuid = res.uuid
-            // this.captchaUrl = 'data:image/gif;base64,' + res.img;
+      this.loginForm.uuid = res.uuid
+      this.captchaUrl = 'data:image/gif;base64,' + res.captchaImage;
 		})
 	}
 	private getCookieRememberValue() {
@@ -150,6 +169,7 @@ export default class Login extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '../../components/icon/style.scss';
   .el-input input {
     background: none;
     text-indent: 10px;
@@ -189,6 +209,7 @@ export default class Login extends Vue {
     background-size: cover;
     background-position: center;
     position: absolute;
+    overflow-y: hidden;
     &-con{
       position: absolute;
       right: 160px;
@@ -223,26 +244,23 @@ export default class Login extends Vue {
     display: flex;
   }
 
-  .content-notice {
-    padding-top: 40px;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+  
   .notice-panel{
     flex: 5;
     float: left;
+    padding: 0;
     height: 100%;
     background-color: rgba(0,0,0,0.66);
-    overflow: auto;
     display: block;
-    border-radius: 6px;
+    border-radius: 15px;
+    overflow: hidden;
   }
   .login-panel {
     color: white;
     margin-left: 20px;
     width: 350px;
     height: 100%;
-    border-radius: 6px;
+    border-radius: 15px;
     background-color: rgba(0,0,0,0.66);
   }
   .login-logo{

@@ -1,0 +1,42 @@
+
+@font-face {
+    font-family: "custom-font";
+    src: url('//at.alicdn.com/t/font_1799802_vgblkb03qn.eot');
+    /* IE9*/
+    src: url('//at.alicdn.com/t/font_1799802_vgblkb03qn.eot?#iefix') 
+        format("embedded-opentype"),
+      /* IE6-IE8 */
+      url('//at.alicdn.com/t/font_1799802_vgblkb03qn.woff2') format('woff2'),
+      url('//at.alicdn.com/t/font_1799802_vgblkb03qn.woff') format('woff'),
+      url('//at.alicdn.com/t/font_1799802_vgblkb03qn.ttf')
+      format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('//at.alicdn.com/t/font_1799802_vgblkb03qn.svg#iconfont')
+      format("svg");
+  /* iOS 4.1- */
+  
+}
+
+.i-icon {
+    display: inline-block;
+    font-family: 'custom-font' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: middle;
+}
+.i-icon-login-user:before {
+    content: "\e617";
+}
+.i-icon-password:before {
+    content: "\e600";
+}
+.i-icon-yanzhengma:before {
+    content: "\e644";
+}

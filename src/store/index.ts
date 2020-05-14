@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { IUserState } from './modules/user';
-import getters from './getters';
+import { AppState } from './modules/app'
+
 
 Vue.use(Vuex);
 
-export interface IRootState {
-
+interface IRootState { 
+  app: AppState;
   user: IUserState;
 }
-const store = new Vuex.Store<IRootState>({getters});
+export default new  Vuex.Store<IRootState>({
 
-export default store;
+});

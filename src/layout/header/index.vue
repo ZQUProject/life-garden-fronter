@@ -1,42 +1,20 @@
 <template>
     <div class="layout-nav">
         <div class="layout-logo" @click="goHomePage">
-            <img :src="logo" class="layout-logo-image" />
+           <a> <img :src="logo" class="layout-logo-image" /> </a>
         </div>
-        <div class="layout-nav-menu">
-            <Menu mode="horizontal" :theme="theme1" active-name="1">
-            
-                    <MenuItem name="1">
-                        <Icon type="ios-navigate"></Icon>
-                        Item 1
-                    </MenuItem>
-                    <MenuItem name="2">
-                        <Icon type="ios-keypad"></Icon>
-                        Item 2
-                    </MenuItem>
-                    <MenuItem name="3">
-                        <Icon type="ios-analytics"></Icon>
-                        Item 3
-                    </MenuItem>
-                    <MenuItem name="4">
-                        <Icon type="ios-paper"></Icon>
-                        Item 4
-                    </MenuItem>
-            </Menu>
-        </div>
-       
             <div class= "layout-nav-info">
-                    <Badge :count="100">
-                        <Icon type="ios-notifications-outline" size="26"></Icon>
-                    </Badge>
+                <Info></Info>
             </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Info from './component/Info.vue'
 @Component({
   components: {
+      Info: Info
   },
 })
 export default class LayoutHeader extends Vue {
@@ -55,7 +33,7 @@ export default class LayoutHeader extends Vue {
     margin: 0 auto;
     width: 100%;
     background-color: #fff;
-    padding: 0px 30px;
+    padding: 0px 15px;
 }
 .layout-nav .layout-nav-menu{
     float: left
@@ -79,6 +57,5 @@ export default class LayoutHeader extends Vue {
 .layout-nav-info{
     margin-right: 1rem;
     float: right;
-    padding-top: 8px;
 }
 </style>

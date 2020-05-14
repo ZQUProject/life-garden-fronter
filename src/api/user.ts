@@ -1,5 +1,6 @@
-import request from '@/utils/request';
+import { getRequest, postRequest, putRequest, getNoAuthRequest, postNoAuthRequest} from '@/utils/request';
 
 
-export const login = (data) => request({url: 'api/auth/login', method: 'post', data});
-export const getCaptchaImage = () => request({url: 'api/auth/captcha', method: 'get'});
+export const login = (data) => postNoAuthRequest('/auth/login', data);
+export const getCaptchaImage = () => getNoAuthRequest('/auth/captcha', null);
+export const getUserMessage = () => getNoAuthRequest('/user/message', null);

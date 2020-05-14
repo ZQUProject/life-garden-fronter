@@ -3,28 +3,41 @@
         <h1 class="wrapper-container-h1"></h1>
         <Layout class="wrapper-container-breadcrumb">
             <Breadcrumb :separator='separator'>
-                <BreadcrumbItem to="/">
-                    <Icon type="ios-home-outline"></Icon> Home
-                </BreadcrumbItem>
-                <BreadcrumbItem to="/components/breadcrumb">
-                    <Icon type="logo-buffer"></Icon> Components
-                </BreadcrumbItem>
-                <BreadcrumbItem >
-                    <Icon type="ios-cafe"></Icon> Breadcrumb
-                </BreadcrumbItem>
+                <BreadcrumbItem 
+                    v-for="item in currentPath" 
+                    :to="item.path" 
+                    :key="item.name"
+                >{{ item.name }}</BreadcrumbItem>
             </Breadcrumb>
         </Layout>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
   components: {
   },
 })
 export default class BodyBreadcrumb extends Vue {
     private separator: string = '<b style=\'color: #2d8cf0;padding: 0 5px;\'>=></b>';
+      @Prop({
+            type: Array, 
+            required: true,
+        })  currentPath !: any;
+    watch() {
+        this.getBreadCrumb();
+    }
+    created() {
+        this.getBreadCrumb();
+    }
+    private getBreadCrumb() {
+        // let matched =  this.$router.matched.filter(item => {
+        //     if(item.name) {
+        //         return true;
+        //     }
+        // })
+    }
 }
 </script>
 

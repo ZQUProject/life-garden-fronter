@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "src/**/*.svg",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx", "src/utils/request.js"
 
   ],
   "exclude": [
