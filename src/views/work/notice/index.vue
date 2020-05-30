@@ -1,13 +1,9 @@
 <template>
-    <div style="">        
-        <div style="width:100%">
-            <Input v-model="value13" style="width:20rem;margin-right:0px;margin-bottom:15px;">
-                <Select v-model="select3" slot="prepend" style="width: 80px">
-                    <Option value="day">Day</Option>
-                    <Option value="month">Month</Option>
-                </Select>
-                <Button slot="append" icon="ios-search"></Button>
+    <div>        
+        <div class="search-box">
+            <Input v-model="value13" placeholder="搜索内容" size="large" style="" class="search-content">
             </Input>
+            <Button slot="append"  type="primary" size="large" shape="circle" icon="ios-search">Search</Button>
         </div>
         <div style="width: 100%;margin-top: 35px;">
        <List item-layout="vertical">
@@ -71,7 +67,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.search-box {
+    width: 100%;
+    .search-content{
+        width:20rem;
+        margin-right:0px;
+        .ivu-input{
+            border-radius:15px !important;
+        }
+        .ivu-select-selection{
+            border-radius:15px !important;
+        }
+    }
+}
+
 #scbar_txt{
     font-size: 14px;
     line-height: 20px;
