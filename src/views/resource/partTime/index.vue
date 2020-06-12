@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <div >
         <Form :model="formItem" label-position="left" :label-width="80" class="resource-form">
             <FormItem label="Input">
@@ -54,9 +54,8 @@
             </FormItem>
         </Form>
     </div>
-</template>
-
-<script lang="ts">
+</template>-->
+<!--<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {
@@ -74,11 +73,14 @@ export default class Apply extends Vue {
         slider: [20, 50],
         textarea: ''
     }
-}
-</script>
 
+}
+</script>-->
+
+
+<!--
 <style lang="scss" scoped>
-.resource-form {
+  .resource-form {
     margin: 0px auto;
     width: 30rem;
     padding: 8px 20px;
@@ -86,5 +88,8 @@ export default class Apply extends Vue {
     border: 2px solid #5da9c8;
     border-radius: 30px;
     box-shadow: 2px 0 3px -1px #5da9c8, 0 2px 3px -1px #5da9c8;
-}
-</style>>
+  }
+</style>-->
+
+
+

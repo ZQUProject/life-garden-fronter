@@ -9,7 +9,7 @@
                 <Button slot="append" icon="ios-search"></Button>
             </Input>
             <Button type="primary" @click="showApplyForm = true">submit applylication</Button>
-             <Modal v-model="showApplyForm" style="width:400;" :mask-closable=false>
+             <Modal v-model="showApplyForm" style="width:400px;" :mask-closable=false>
                 <p slot="header" style="color:#5da9c8;text-align:center">
                     <!-- <Icon type="ios-information-circle"></Icon> -->
                     <span>Applylication Title</span>

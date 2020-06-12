@@ -23,17 +23,27 @@ const routes = [
           path: 'home',
           component: () => import('@/views/home/index.vue'),
           name: '首页',
-        }, 
+        },
+        {
+            path: 'activity/activity',
+            component: () => import('@/views/activity/activity/index.vue'),
+            name: '文件审批'
+        },
         {
           path: 'resource/share',
-          component: () => import('@/views/resource/share/index.vue'),
+          component: () => import('@/views/resource/bookShare/index.vue'),
           name: '资源共享'
         }, 
         {
           path: 'resource/apply',
-          component: () => import('@/views/resource/apply/index.vue'),
+          component: () => import('@/views/resource/partTime/index.vue'),
           name: '资源申请'
-        }, 
+        },
+     /*   {
+            path: 'resource/apply',
+            component: () => import('@/views/activity/activity/index.vue'),
+            name: '文件审批'
+        },*/
         {
           path: 'resource/ticket',
           component: () => import('@/views/resource/ticket/index.vue'),
@@ -41,12 +51,12 @@ const routes = [
         }, 
         {
           path: 'good/found',
-          component: () => import('@/views/good/found/index.vue'),
+          component: () => import('@/views/lost/index.vue'),
           name: '找物'
         },
         {
           path: 'good/lost',
-          component: () => import('@/views/good/lost/index.vue'),
+          component: () => import('@/views/lost/lost/index.vue'),
           name: '失物'
         },
         {
