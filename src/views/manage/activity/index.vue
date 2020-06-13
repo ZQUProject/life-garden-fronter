@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span style="font-size: 50px;margin-left: 500px;">抢票审核</span>
+    <span style="font-size: 50px;margin-left: 500px;">活动审核</span>
     <Table border :loading="loading" :columns="columns7" :data="data6"></Table>
     <div style="text-align: center;">
       <Page :total="100" prev-text="Previous" next-text="Next" @on-change="changePageData"/>
@@ -46,8 +46,8 @@
                 key: 'title'
             },
             {
-                title: '抢票内容',
-                key: 'detail'
+                title: '内容介绍',
+                key: 'content'
             },
             {
                 title:'图片',
@@ -103,9 +103,12 @@
                 id:'10',
                 username: '201724113251',
                 nickname: '杨志勇',
-                title: '十大歌手',
-                detail: '12354878845asdfasdfasdffas',
+                title: '演员',
+                content: '12354878845asdfasdfasdffas',
+                scopeId: '5',
                 userLimit: 100,
+                scopeType: '计算机学院',
+                location: '第二教学楼',
                 startTime: '2020-06-13 08:12:00',
                 endTime: '2020-06-13 10:12:00',
                 imgUrl: 'http://young.cn-bj.ufileos.com/45c0efc8-202d-401b-a414-f8c25552268c.jpg?UCloudPublicKey=TOKEN_2d33a0c3-a5c9-4296-9170-8d3590105ba5&Signature=ESYJXViLOxyr54guTVAqAnGFO%2Bc%3D&Expires=1907333271'
@@ -114,9 +117,12 @@
                 id:'10',
                 username: '201724113251',
                 nickname: '杨志勇',
-                title: '十大歌手',
-                detail: '12354878845asdfasdfasdffas',
+                title: '演员',
+                content: '12354878845asdfasdfasdffas',
+                scopeId: '5',
                 userLimit: 100,
+                scopeType: '计算机学院',
+                location: '第二教学楼',
                 startTime: '2020-06-13 08:12:00',
                 endTime: '2020-06-13 10:12:00',
                 imgUrl: 'http://young.cn-bj.ufileos.com/45c0efc8-202d-401b-a414-f8c25552268c.jpg?UCloudPublicKey=TOKEN_2d33a0c3-a5c9-4296-9170-8d3590105ba5&Signature=ESYJXViLOxyr54guTVAqAnGFO%2Bc%3D&Expires=1907333271'
@@ -125,9 +131,12 @@
                 id:'10',
                 username: '201724113251',
                 nickname: '杨志勇',
-                title: '十大歌手',
-                detail: '12354878845asdfasdfasdffas',
+                title: '演员',
+                content: '12354878845asdfasdfasdffas',
+                scopeId: '5',
                 userLimit: 100,
+                scopeType: '计算机学院',
+                location: '第二教学楼',
                 startTime: '2020-06-13 08:12:00',
                 endTime: '2020-06-13 10:12:00',
                 imgUrl: 'http://young.cn-bj.ufileos.com/45c0efc8-202d-401b-a414-f8c25552268c.jpg?UCloudPublicKey=TOKEN_2d33a0c3-a5c9-4296-9170-8d3590105ba5&Signature=ESYJXViLOxyr54guTVAqAnGFO%2Bc%3D&Expires=1907333271'
@@ -136,9 +145,12 @@
                 id:'10',
                 username: '201724113251',
                 nickname: '杨志勇',
-                title: '十大歌手',
-                detail: '12354878845asdfasdfasdffas',
+                title: '演员',
+                content: '12354878845asdfasdfasdffas',
+                scopeId: '5',
                 userLimit: 100,
+                scopeType: '计算机学院',
+                location: '第二教学楼',
                 startTime: '2020-06-13 08:12:00',
                 endTime: '2020-06-13 10:12:00',
                 imgUrl: 'http://young.cn-bj.ufileos.com/45c0efc8-202d-401b-a414-f8c25552268c.jpg?UCloudPublicKey=TOKEN_2d33a0c3-a5c9-4296-9170-8d3590105ba5&Signature=ESYJXViLOxyr54guTVAqAnGFO%2Bc%3D&Expires=1907333271'
@@ -152,8 +164,11 @@
                 content: `账号：${this.data6[index].username}<br>
                           姓名：${this.data6[index].nickname}<br>
                           标题：${this.data6[index].title}<br>
-                          抢票介绍：${this.data6[index].detail}<br>
+                          内容介绍：${this.data6[index].content}<br>
+                          范围：${this.data6[index].scopeId}<br>
                           人数限制：${this.data6[index].userLimit}<br>
+                          可见范围：${this.data6[index].scopeType}<br>
+                          举办地点：${this.data6[index].location}<br>
                           开始时间：${this.data6[index].startTime}<br>
                           结束时间：${this.data6[index].endTime}<br>`,
 
@@ -185,9 +200,12 @@
                     id:'10',
                     username: '201724113251',
                     nickname: '杨志勇',
-                    title: '十大歌手',
-                    detail: '12354878845asdfasdfasdffas',
+                    title: '演员',
+                    content: '12354878845asdfasdfasdffas',
+                    scopeId: '5',
                     userLimit: 100,
+                    scopeType: '计算机学院',
+                    location: '第二教学楼',
                     startTime: '2020-06-13 08:12:00',
                     endTime: '2020-06-13 10:12:00',
                     imgUrl: 'http://young.cn-bj.ufileos.com/45c0efc8-202d-401b-a414-f8c25552268c.jpg?UCloudPublicKey=TOKEN_2d33a0c3-a5c9-4296-9170-8d3590105ba5&Signature=ESYJXViLOxyr54guTVAqAnGFO%2Bc%3D&Expires=1907333271'

@@ -1,4 +1,4 @@
-<!--<template>
+<template>
     <div >
         <Form :model="formItem" label-position="left" :label-width="80" class="resource-form">
             <FormItem label="Input">
@@ -54,8 +54,8 @@
             </FormItem>
         </Form>
     </div>
-</template>-->
-<!--<script lang="ts">
+</template>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {
@@ -75,10 +75,10 @@ export default class Apply extends Vue {
     }
 
 }
-</script>-->
+</script>
 
 
-<!--
+
 <style lang="scss" scoped>
   .resource-form {
     margin: 0px auto;
@@ -89,7 +89,7 @@ export default class Apply extends Vue {
     border-radius: 30px;
     box-shadow: 2px 0 3px -1px #5da9c8, 0 2px 3px -1px #5da9c8;
   }
-</style>-->
+</style>
 
 
 

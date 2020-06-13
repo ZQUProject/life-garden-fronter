@@ -3,7 +3,7 @@
         class="resource-form">
 
     <FormItem label="发布类型" prop="type">
-      <Select v-model="lostFormValidate.type" placeholder="请选择发布类型">
+      <Select v-model="lostFormValidate.lostType" placeholder="请选择发布类型">
         <Option value="0">寻找失物</Option>
         <Option value="1">拾到失物</Option>
       </Select>
@@ -23,7 +23,9 @@
              placeholder="请输入内容"></Input>
     </FormItem>
 
-
+<!--
+    <textarea wrap="soft" autocomplete="off" spellcheck="false" placeholder="输入申请原因" rows="2" maxlength="60" class="ivu-input" style="height: 73px; min-height: 73px; max-height: 9.0072e+15px; overflow-y: hidden;"></textarea>
+-->
     <FormItem>
       <Button type="primary" class="form-button" @click="handleSubmit('lostFormValidate')" >提交</Button>
       <Button @click="handleReset('lostFormValidate')" class="form-button">重置</Button>
@@ -38,7 +40,7 @@
     export default class ActivityForm extends Vue {
 
         private lostFormValidate = {
-            type: '',
+            lostType: '',
             lostPropertyName: '',
             contractWay: '',
             content: ''

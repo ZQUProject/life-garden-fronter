@@ -27,15 +27,15 @@ const routes = [
         {
             path: 'activity/activity',
             component: () => import('@/views/activity/activity/index.vue'),
-            name: '文件审批'
+            name: '资源共享'
         },
         {
-          path: 'resource/share',
+          path: 'resource/shareBook',
           component: () => import('@/views/resource/bookShare/index.vue'),
           name: '资源共享'
         }, 
         {
-          path: 'resource/apply',
+          path: 'resource/partTime',
           component: () => import('@/views/resource/partTime/index.vue'),
           name: '资源申请'
         },
@@ -47,16 +47,16 @@ const routes = [
         {
           path: 'resource/ticket',
           component: () => import('@/views/resource/ticket/index.vue'),
-          name: '资源申请'
+          name: '资源共享'
         }, 
-        {
-          path: 'good/found',
+       /* {
+          path: 'found',
           component: () => import('@/views/lost/index.vue'),
           name: '找物'
-        },
+        },*/
         {
-          path: 'good/lost',
-          component: () => import('@/views/lost/lost/index.vue'),
+          path: 'lost',
+          component: () => import('@/views/lost/form.vue'),
           name: '失物'
         },
         {
@@ -78,6 +78,31 @@ const routes = [
           path: 'manage/approval',
           component: () => import('@/views/manage/approval/index.vue'),
           name: '审批信息'
+        },
+        {
+            path: 'manage/activity',
+            component: () => import('@/views/manage/activity/index.vue'),
+            name: '活动审批'
+        },
+        {
+            path: 'manage/bookShare',
+            component: () => import('@/views/manage/bookShare/index.vue'),
+            name: '图书审批'
+        },
+        {
+            path: 'manage/lost',
+            component: () => import('@/views/manage/lost/index.vue'),
+            name: '失物审批'
+        },
+        {
+            path: 'manage/partTime',
+            component: () => import('@/views/manage/partTime/index.vue'),
+            name: '兼职审批'
+        },
+        {
+            path: 'manage/ticket',
+            component: () => import('@/views/manage/ticket/index.vue'),
+            name: '抢票审批'
         },
       ]
   },
