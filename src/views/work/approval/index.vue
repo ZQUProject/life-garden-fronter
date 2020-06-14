@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <Button slot="extra" icon="ios-download-outline" type="primary" shape="circle" @click.prevent="download"></Button>
-                    <p >
+                    <p>
                         <div style="font-size:18px;">
                             <span style="font-weight: bold;">申请时间：</span><span>{{item.applyTime}}</span>
                         </div>

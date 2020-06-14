@@ -1,164 +1,200 @@
 <template>
     <div>
-        <div style="display:flex;">
-            <Input v-model="searchContent" style="width:20rem;margin-right:0px;">
-                <Select v-model="selectSearchContent" slot="prepend" style="width: 80px">
-                    <Option value="day">Day</Option>
-                    <Option value="month">Month</Option>
-                </Select>
-                <Button slot="append" icon="ios-search"></Button>
+        <div class="search-box">
+            <Select placeholder="请选择条件" style="width: 10%" size="large">
+                <Option value="lostPropertyName">物品名称</Option>
+                <Option value="content">物品介绍</Option>
+            </Select>
+            <Input v-model="value13" placeholder="搜索内容" size="large" style="" class="search-content">
             </Input>
-            <Button type="primary" @click="showApplyForm = true">submit applylication</Button>
-             <Modal v-model="showApplyForm" style="width:400px;" :mask-closable=false>
-                <p slot="header" style="color:#5da9c8;text-align:center">
-                    <!-- <Icon type="ios-information-circle"></Icon> -->
-                    <span>Applylication Title</span>
-                </p>
-                <div>
-                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-                    <FormItem label="Name" prop="name">
-                        <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
-                    </FormItem>
-                    <FormItem label="E-mail" prop="mail">
-                        <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
-                    </FormItem>
-                    <FormItem label="City" prop="city">
-                        <Select v-model="formValidate.city" placeholder="Select your city">
-                            <Option value="beijing">New York</Option>
-                            <Option value="shanghai">London</Option>
-                            <Option value="shenzhen">Sydney</Option>
-                        </Select>
-                    </FormItem>
-                    <FormItem label="Date">
-                        <Row>
-                            <Col span="11">
-                                <FormItem prop="date">
-                                    <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
-                                </FormItem>
-                            </Col>
-                            <Col span="2" style="text-align: center">-</Col>
-                            <Col span="11">
-                                <FormItem prop="time">
-                                    <TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>
-                                </FormItem>
-                            </Col>
-                        </Row>
-                    </FormItem>
-                    <FormItem label="Gender" prop="gender">
-                        <RadioGroup v-model="formValidate.gender">
-                            <Radio label="male">Male</Radio>
-                            <Radio label="female">Female</Radio>
-                        </RadioGroup>
-                    </FormItem>
-                    <FormItem label="Hobby" prop="interest">
-                        <CheckboxGroup v-model="formValidate.interest">
-                            <Checkbox label="Eat"></Checkbox>
-                            <Checkbox label="Sleep"></Checkbox>
-                            <Checkbox label="Run"></Checkbox>
-                            <Checkbox label="Movie"></Checkbox>
-                        </CheckboxGroup>
-                    </FormItem>
-                    <FormItem label="Desc" prop="desc">
-                        <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
-                    </FormItem>
-                </Form>
+            <Button slot="append" type="info" size="large" shape="circle" icon="ios-search">Search</Button>
         </div>
-        <div slot="footer" style="text-align: center;">
-            <Button shape="circle"  @click="applyCancel" >close</Button>
-            <Button type="primary" shape="circle" :loading="modal_loading" @click="applySubmit">submit</Button>
+        <div style="margin-bottom:10px;">
+            <LostForm/>
         </div>
-    </Modal>
-                  
+        <div style="width: 100%;margin-top: 35px;">
+            <List item-layout="vertical">
+                <ListItem v-for="(item,index) in lostForm" :key="item.lostPropertyName">
+                    <ListItemMeta :avatar="item.avatar" :title="item.lostPropertyName" :description="showType(item.lostType)"/>
+                    {{ item.content }}
+                    <template slot="action">
+                        <li>
+                            <div slot="title">
+                                <div style="font-size:12px;color:white;text-align: center;">
+                                    <div v-if="item.status == 1"
+                                         style="background:#1E90FF; border-radius: 10px; padding: 3px;display: inline-block;"> 审批通过
+                                    </div>
+                                    <div v-if="item.status == 2"
+                                         style="background:#A52A2A; border-radius: 10px; padding: 3px;display: inline-block;"> 审批不通过
+                                    </div>
+                                    <div v-if="item.status == 3"
+                                         style="background:#9ACD32; border-radius: 10px; padding: 3px;display: inline-block;"> 审批中
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <Button style="margin-left: 80px" type="success" size="small" icon="md-eye" @click="show(index)">查看</Button>
+
+                        </li>
+                        <li>
+                            <Button style="margin-left: 30px" type="error" size="small" icon="md-close-circle">删除</Button>
+                        </li>
+                    </template>
+                    <template slot="extra">
+                        <img :src="item.imgUrl" style="width: 250px;">
+                        <!-- <img src="https://dev-file.iviewui.com/5wxHCQMUyrauMCGSVEYVxHR5JmvS7DpH/large" style="width: 280px">-->
+                    </template>
+                </ListItem>
+            </List>
         </div>
-        <div style="width: 100%;position: absolute;margin-top: 35px;">
-            <div style="background:#eee;padding: 20px">
-                <Card :bordered="false">
-                    <p slot="title">No border title</p>
-                    <Button type="primary" slot="extra">查看详情</Button>
-                    <p>Content of no border type. Content of no border type. Content of no border type. Content of no border type. </p>
-                </Card>
-            </div>
+        <div style="text-align: center;">
+            <Page :total="100" prev-text="Previous" next-text="Next" @on-change="changePageData"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import  ApplyForm  from './form.vue';
-import { Message, Notice } from 'view-design';
-@Component({
-  components: {
-      ApplyForm
-  },
-})
-export default class Found extends Vue {
-    private showApplyForm = false;
-    private selectSearchContent = '';
-    private searchContent = 'content';
-     private formValidate = {
-        name: '',
-        mail: '',
-        city: '',
-        gender: '',
-        interest: [],
-        date: '',
-        time: '',
-        desc: ''
-    };
-    private ruleValidate = {
-        name: [
-            { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-        ],
-        mail: [
-            { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-            { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
-        ],
-        city: [
-            { required: true, message: 'Please select the city', trigger: 'change' }
-        ],
-        gender: [
-            { required: true, message: 'Please select gender', trigger: 'change' }
-        ],
-        interest: [
-            { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-            { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-        ],
-        date: [
-            { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-        ],
-        time: [
-            { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-        ],
-        desc: [
-            { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-            { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
+
+    import {Component, Vue} from 'vue-property-decorator';
+    import LostForm from './form.vue';
+
+    @Component({
+        components: {
+           LostForm
+        },
+    })
+    export default class LostADD extends Vue {
+        private loading = false;
+        private lostForm = [
+            {
+                id: '1',
+                status: '1',
+                lostType: '1',
+                lostPropertyName: '手机',
+                contractWay: '18318265276',
+                content: '二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机',
+                imgUrl: 'https://trademark-pics-search.oss-cn-shanghai.aliyuncs.com/big/h4534360455939072.jpg'
+            },
+            {
+                id: '1',
+                status: '2',
+                lostType: '1',
+                lostPropertyName: '手机',
+                contractWay: '18318265276',
+                content: '二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机',
+                imgUrl: 'https://trademark-pics-search.oss-cn-shanghai.aliyuncs.com/big/h4534360455939072.jpg'
+            },
+            {
+                id: '1',
+                status: '3',
+                lostType: '1',
+                lostPropertyName: '手机',
+                contractWay: '18318265276',
+                content: '二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机',
+                imgUrl: 'https://trademark-pics-search.oss-cn-shanghai.aliyuncs.com/big/h4534360455939072.jpg'
+            },
+
+
+
+
+
         ]
-    };
-    private handleSubmit (name) {
-        const form: any = this.$refs[name]
-        form.validate((valid) => {
-            if (valid) {
-            } else {
+        show(index) {
+            this.$Modal.confirm({
+                title: '查看信息',
+                content: `物品名称：${this.lostForm[index].lostPropertyName}<br>
+                          寻找类型：${this.showType(this.lostForm[index].lostType)}<br>
+                          联系方式：${this.lostForm[index].contractWay}<br>
+                          物品介绍：${this.lostForm[index].content}<br>`,
+                okText: '确定',
+                onOk: () => {
+                    this.$Message.info('Clicked ok');
+                },
+                cancelText: '取消',
+                onCancel: () => {
+                    this.$Message.info('Clicked cancel');
+                }
+            })
+        }
+         showType(params){
+            if(params==1){
+                return '寻找失物';
+            }else{
+                return '拾到失物';
             }
-        })
-    };
-    private handleReset (name) {
-        const form: any = this.$refs[name]
-        form.resetFields();
+        }
+        private changePageData() {
+            this.$Message.info('开始请求');
+            this.loading = true;
+            this.$Message.info('请求结束');
+            this.lostForm = [
+                {
+                    id: '1',
+                    status: '1',
+                    lostType: '1',
+                    lostPropertyName: '手机',
+                    contractWay: '18318265276',
+                    content: '二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机二教101手机',
+                    imgUrl: 'https://trademark-pics-search.oss-cn-shanghai.aliyuncs.com/big/h4534360455939072.jpg'
+                }
+            ]
+            this.loading = false;
+        }
     }
-    private applySubmit() {
-        this.$Notice.success({
-            title: 'Notification title',
-            desc:  'Here is the notification description. Here is the notification description. '
-        })
-        this.showApplyForm = false;
-    }
-    private applyCancel() {
-        this.showApplyForm = false;
-    }
-}
+
+
 </script>
 
-<style>
+<style lang="scss" scoped>
+    .search-box {
+        width: 100%;
 
+        .search-content {
+            width: 20rem;
+            margin-right: 0px;
+
+            .ivu-input {
+                border-radius: 15px !important;
+            }
+
+            .ivu-select-selection {
+                border-radius: 15px !important;
+            }
+        }
+    }
+
+    #scbar_txt {
+        font-size: 14px;
+        line-height: 20px;
+        width: 230px;
+        padding: 0;
+        border: none;
+    }
+
+    #scbar_btn {
+        position: relative;
+        z-index: 2;
+        overflow: inherit;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        border-radius: 15px;
+        background: #5da9c8;
+    }
+
+    .pn::before {
+        font-family: 'test999_icons';
+        font-size: 18px;
+        line-height: 44px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 40px;
+        height: 40px;
+        content: '\E986';
+        text-align: center;
+        color: #fff;
+    }
 </style>

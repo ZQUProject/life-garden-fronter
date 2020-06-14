@@ -1,44 +1,51 @@
 <template>
-  <Form ref="lostFormValidate" :model="lostFormValidate" :rules="lostRuleValidate" :label-width="80"
-        class="resource-form">
+  <div>
+    <div style="text-align: right;">
+      <Button type="primary" icon="md-add" @click="modal1 = true">新增失物/寻物</Button>
+    </div>
+    <Modal
+            v-model="modal1"
+            title="新增失物/寻物"
+            @on-ok="ok('lostFormValidate')"
+            @on-cancel="cancel('lostFormValidate')">
+      <Form ref="lostFormValidate" :model="lostFormValidate" :rules="lostRuleValidate" :label-width="80">
 
-    <FormItem label="发布类型" prop="type">
-      <Select v-model="lostFormValidate.lostType" placeholder="请选择发布类型">
-        <Option value="0">寻找失物</Option>
-        <Option value="1">拾到失物</Option>
-      </Select>
-    </FormItem>
+        <FormItem label="发布类型" prop="type">
+          <Select v-model="lostFormValidate.lostType" placeholder="请选择发布类型">
+            <Option value="0">寻找失物</Option>
+            <Option value="1">拾到失物</Option>
+          </Select>
+        </FormItem>
 
-    <FormItem label="物品名称" prop="lostPropertyName">
-      <Input v-model="lostFormValidate.lostPropertyName" placeholder="请输入备注"></Input>
-    </FormItem>
+        <FormItem label="物品名称" prop="lostPropertyName">
+          <Input v-model="lostFormValidate.lostPropertyName" placeholder="请输入备注"></Input>
+        </FormItem>
 
 
-    <FormItem label="联系方式" prop="contractWay">
-      <Input v-model="lostFormValidate.contractWay" placeholder="请输入联系方式"></Input>
-    </FormItem>
+        <FormItem label="联系方式" prop="contractWay">
+          <Input v-model="lostFormValidate.contractWay" placeholder="请输入联系方式"></Input>
+        </FormItem>
 
-    <FormItem label="物品介绍" prop="content">
-      <Input v-model="lostFormValidate.content" type="textarea" :autosize="{minRows: 2,maxRows: 5}"
-             placeholder="请输入内容"></Input>
-    </FormItem>
+        <FormItem label="物品介绍" prop="content">
+          <Input v-model="lostFormValidate.content" type="textarea" :autosize="{minRows: 2,maxRows: 5}"
+                 placeholder="请输入内容"></Input>
+        </FormItem>
 
-<!--
-    <textarea wrap="soft" autocomplete="off" spellcheck="false" placeholder="输入申请原因" rows="2" maxlength="60" class="ivu-input" style="height: 73px; min-height: 73px; max-height: 9.0072e+15px; overflow-y: hidden;"></textarea>
--->
-    <FormItem>
-      <Button type="primary" class="form-button" @click="handleSubmit('lostFormValidate')" >提交</Button>
-      <Button @click="handleReset('lostFormValidate')" class="form-button">重置</Button>
-    </FormItem>
-  </Form>
+
+        <Upload action="//jsonplaceholder.typicode.com/posts/">
+          <Button icon="ios-cloud-upload-outline" style="margin-left: 200px">上传文件</Button>
+        </Upload>
+      </Form>
+    </Modal>
+  </div>
 </template>
 
 <script lang="ts">
     import {Component, Vue, Prop} from 'vue-property-decorator';
 
     @Component
-    export default class ActivityForm extends Vue {
-
+    export default class LostForm extends Vue {
+        private modal1 = false;
         private lostFormValidate = {
             lostType: '',
             lostPropertyName: '',
@@ -65,6 +72,7 @@
                 {type: 'string', min: 20, message: '详情不能少于20字', trigger: 'blur'}
             ]
         };
+
         // 验证手机
         checkPhone(rule, value, callback) {
             let isTel: boolean = false;
@@ -78,7 +86,8 @@
             }
             callback();
         };
-        handleSubmit(name) {
+
+        ok(name) {
             let el: any = this.$refs[name];
             el.validate((valid) => {
                 if (valid) {
@@ -89,7 +98,7 @@
             })
         };
 
-        handleReset(name) {
+        cancel(name) {
             let el: any = this.$refs[name];
             el.resetFields();
         };
@@ -106,7 +115,8 @@
     border-radius: 30px;
     box-shadow: 2px 0 3px -1px #5da9c8, 0 2px 3px -1px #5da9c8;
   }
-  .form-button{
+
+  .form-button {
     margin-left: 50px;
   }
 

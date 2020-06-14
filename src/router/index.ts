@@ -27,17 +27,22 @@ const routes = [
         {
             path: 'activity/activity',
             component: () => import('@/views/activity/activity/index.vue'),
-            name: '资源共享'
+            name: '活动共享'
         },
         {
-          path: 'resource/shareBook',
+          path: 'resource/bookShare',
           component: () => import('@/views/resource/bookShare/index.vue'),
-          name: '资源共享'
+          name: '图书共享'
         }, 
         {
+            /*
+            @/views/resource/partTime/index.vue
+           @/views/resource/bookShare/form.vue
+             */
+
           path: 'resource/partTime',
           component: () => import('@/views/resource/partTime/index.vue'),
-          name: '资源申请'
+          name: '兼职共享'
         },
      /*   {
             path: 'resource/apply',
@@ -56,7 +61,7 @@ const routes = [
         },*/
         {
           path: 'lost',
-          component: () => import('@/views/lost/form.vue'),
+          component: () => import('@/views/lost/index.vue'),
           name: '失物'
         },
         {

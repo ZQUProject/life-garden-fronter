@@ -48,9 +48,9 @@
                 key: 'lostType',
                 render: (h, params) => {
                     if (params.row.lostType== 1) {
-                        return h('span', '丢物');
+                        return h('span', '寻找失物');
                     }else {
-                        return h('span', '寻物');
+                        return h('span', '拾到失物');
                     }
                 }
             },
@@ -142,7 +142,7 @@
                 title: '审批信息',
                 content: `账号：${this.data6[index].username}<br>
                           姓名：${this.data6[index].nickname}<br>
-                          发布类型：${this.data6[index].lostType}<br>
+                          发布类型：${this.showType(this.data6[index].lostType)}<br>
                           物品描述：${this.data6[index].content}<br>
                           物品名称：${this.data6[index].lostPropertyName}<br>
                           联系方式：${this.data6[index].contractWay}<br>`,
@@ -184,6 +184,14 @@
             ]
             this.loading = false;
         }
+        showType(params){
+            if(params==1){
+                return '寻找失物';
+            }else{
+                return '拾到失物';
+            }
+        }
+
 
 
     }

@@ -40,19 +40,19 @@
                     id: '6', name: '失物招领',
                     children: [
                         {id: '7', name: '失物', path: '/lost'},
-                        {id: '8', name: '找物', path: '/lost'},
-                        {id: '15', name: '页面测试', path: '/work/approval'}
+                        /*{id: '8', name: '找物', path: '/lost'},
+                        {id: '15', name: '页面测试', path: '/work/approval'}*/
                     ]
                 },
                 /*{id:'8', name:'快捷办公', children:[{id:'9', name:'文件审批',path:'/work/approval'},{id:'10', name:'文件发布',path:'/work/file'},{id:'11', name:'官方通知',path:'/work/notice'}]},*/
                 {
-                    id: '9', name: '编辑管理',
+                    id: '8', name: '编辑管理',
                     children: [
-                        {id: '10', name: '活动审批', path: '/manage/activity'},
-                        {id: '11', name: '图书审批', path: '/manage/bookShare'},
-                        {id: '12', name: '失物审批', path: '/manage/lost'},
-                        {id: '13', name: '兼职审批', path: '/manage/partTime'},
-                        {id: '14', name: '抢票审批', path: '/manage/ticket'}]
+                        {id: '9', name: '活动审批', path: '/manage/activity'},
+                        {id: '10', name: '图书审批', path: '/manage/bookShare'},
+                        {id: '11', name: '失物审批', path: '/manage/lost'},
+                        {id: '12', name: '兼职审批', path: '/manage/partTime'},
+                        {id: '13', name: '抢票审批', path: '/manage/ticket'}]
                 }]
         }
     }

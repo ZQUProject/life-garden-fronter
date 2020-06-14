@@ -1,64 +1,72 @@
 <template>
-  <Form ref="partTimeFormValidate" :model="partTimeFormValidate" :rules="partTimeRuleValidate" :label-width="80"
-        class="resource-form">
-    <FormItem label="兼职标题" prop="title">
-      <Input v-model="partTimeFormValidate.title" placeholder="请输入标题"></Input>
-    </FormItem>
+  <div>
+    <div style="text-align: right;">
+      <Button type="primary" icon="md-add" @click="modal1 = true">新增兼职</Button>
+    </div>
+    <Modal
+            v-model="modal1"
+            title="新增兼职"
+            @on-ok="ok('partTimeFormValidate')"
+            @on-cancel="cancel('partTimeFormValidate')">
+      <Form ref="partTimeFormValidate" :model="partTimeFormValidate" :rules="partTimeRuleValidate" :label-width="80"
+      >
+        <FormItem label="兼职标题" prop="title">
+          <Input v-model="partTimeFormValidate.title" placeholder="请输入标题"></Input>
+        </FormItem>
 
-    <FormItem label="工作要求" prop="workRequire">
-      <Input v-model="partTimeFormValidate.workRequire" placeholder="请输入工作要求"></Input>
-    </FormItem>
+        <FormItem label="工作要求" prop="workRequire">
+          <Input v-model="partTimeFormValidate.workRequire" placeholder="请输入工作要求"></Input>
+        </FormItem>
 
-    <FormItem label="工作内容" prop="workContent">
-      <Input v-model="partTimeFormValidate.workContent" placeholder="请输入内容"></Input>
-    </FormItem>
+        <FormItem label="工作内容" prop="workContent">
+          <Input v-model="partTimeFormValidate.workContent" placeholder="请输入内容"></Input>
+        </FormItem>
 
-    <FormItem label="开始时间" prop="startTime">
-      <DatePicker type="datetime" format="yyyy-MM-dd HH:mm"
-                  v-model="partTimeFormValidate.startTime"
-                  placeholder="选择日期和时间（不含秒）"
-                  style="width: 200px"></DatePicker>
-    </FormItem>
+        <FormItem label="开始时间" prop="startTime">
+          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm"
+                      v-model="partTimeFormValidate.startTime"
+                      placeholder="选择日期和时间（不含秒）"
+                      style="width: 200px"></DatePicker>
+        </FormItem>
 
-    <FormItem label="结束时间" prop="endTime">
-      <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="选择日期和时间（不含秒）"
-                  v-model="partTimeFormValidate.endTime" style="width: 200px"></DatePicker>
-    </FormItem>
+        <FormItem label="结束时间" prop="endTime">
+          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="选择日期和时间（不含秒）"
+                      v-model="partTimeFormValidate.endTime" style="width: 200px"></DatePicker>
+        </FormItem>
 
 
+        <FormItem label="薪资" prop="workSalary">
+          <Input v-model="partTimeFormValidate.workSalary" placeholder="单位（元）"></Input>
+        </FormItem>
 
-    <FormItem label="薪资" prop="workSalary">
-      <Input v-model="partTimeFormValidate.workSalary" placeholder="单位（元）"></Input>
-    </FormItem>
+        <FormItem label="工作地点" prop="workPlace">
+          <Input v-model="partTimeFormValidate.workPlace" placeholder="请输入内容"></Input>
+        </FormItem>
 
-    <FormItem label="工作地点" prop="workPlace">
-      <Input v-model="partTimeFormValidate.workPlace" placeholder="请输入内容"></Input>
-    </FormItem>
-
-    <FormItem label="联系方式" prop="contactWay">
-      <Input v-model="partTimeFormValidate.contactWay" placeholder="请输入内容"></Input>
-    </FormItem>
-
-    <FormItem>
-      <Button type="primary" @click="handleSubmit('partTimeFormValidate')" class="form-button">提交</Button>
-      <Button @click="handleReset('partTimeFormValidate')" class="form-button">重置</Button>
-    </FormItem>
-  </Form>
+        <FormItem label="联系方式" prop="contactWay">
+          <Input v-model="partTimeFormValidate.contactWay" placeholder="请输入内容"></Input>
+        </FormItem>
+        <Upload action="//jsonplaceholder.typicode.com/posts/">
+          <Button icon="ios-cloud-upload-outline" style="margin-left: 200px">上传文件</Button>
+        </Upload>
+      </Form>
+    </Modal>
+  </div>
 </template>
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
 
     @Component
-    export default class ActivityForm extends Vue {
-
+    export default class PartTimeForm extends Vue {
+        private modal1 = false;
         private partTimeFormValidate = {
             title: '',
             workRequire: '',
             workContent: '',
             startTime: '',
             endTime: '',
-            workSalary:'',
+            workSalary: '',
             workPlace: '',
             contactWay: ''
         };
@@ -92,6 +100,7 @@
                 }
             ]
         };
+
         // 验证手机
         checkPhone(rule, value, callback) {
             let isTel: boolean = false;
@@ -105,7 +114,8 @@
             }
             callback();
         };
-        handleSubmit(name) {
+
+        ok(name) {
             let el: any = this.$refs[name];
             el.validate((valid) => {
                 if (valid) {
@@ -116,7 +126,7 @@
             })
         };
 
-        handleReset(name) {
+        cancel(name) {
             let el: any = this.$refs[name];
             el.resetFields();
         };
@@ -134,7 +144,7 @@
     box-shadow: 2px 0 3px -1px #5da9c8, 0 2px 3px -1px #5da9c8;
   }
 
-  .form-button{
+  .form-button {
     margin-left: 50px;
   }
 </style>
